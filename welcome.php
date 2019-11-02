@@ -1,9 +1,33 @@
 <?php
 $name = $_POST['username'];
 $email = $_POST['useremail'];
+$password = $_POST['password'];
+$address = $_POST['useraddress'];
+$department = $_POST['userdepartment'];
+$age = $_POST['userage'];
 
+$conn = mysqli_connect('localhost', 'root', '', 'test');
+if ($conn){
+	if(empty($name) || empty($email) || empty($password) || empty($address) || empty($department) || empty($age)){
+		echo "Please enter all the Infromation";
+		
+		
+}
+else{
+	
 
-echo "weclcome "; echo $name; echo" Your email is "; echo $email;
+	$sql = "INSERT INTO `register`(`Id`, `Name`, `Email`, `Password`, `Address`, `Department`, `Age`) VALUES (NULL,'$name','$email','$password','$address','$department','$age')";
+		$rslt = mysqli_query($conn, $sql);
+
+		if ($rslt){
+			header("location:index.php");
+		}
+		
+		
+	
+
+}
+}
 
 ?>
 
